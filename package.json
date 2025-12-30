@@ -1,7 +1,7 @@
 {
   "name": "wogd-juce-template-gui",
   "version": "0.0.1",
-  "description": "Vue.js 3 GUI template for JUCE audio plugins with WebView2",
+  "description": "GUI for WOGD JUCE Template",
   "private": true,
   "type": "module",
   "engines": {

@@ -12,7 +12,7 @@ class PluginService {
    * Checks if running in WebView2 environment
    */
   isInWebView2(): boolean {
-    return !!(window as any).chrome?.webview
+    return !!(window as any).__JUCE__?.backend
   }
 
   /**
@@ -20,7 +20,11 @@ class PluginService {
    */
   sendMessage(message: any): void {
     if (this.isInWebView2()) {
-      ;(window as any).chrome.webview.postMessage(JSON.stringify(message))
+      // Use JUCE native integration API
+      const juce = (window as any).__JUCE__
+      if (juce && juce.backend && juce.backend.emitEvent) {
+        juce.backend.emitEvent('juce_message', JSON.stringify(message))
+      }
     } else {
       console.log('[Dev Mode] Would send to plugin:', message)
     }
@@ -33,14 +37,18 @@ class PluginService {
     this.messageHandler = handler
 
     if (this.isInWebView2()) {
-      ;(window as any).chrome.webview.addEventListener('message', (event: MessageEvent) => {
-        try {
-          const message = JSON.parse(event.data)
-          this.messageHandler?.(message)
-        } catch (e) {
-          console.error('Failed to parse message from plugin:', e)
-        }
-      })
+      // Use JUCE native integration API
+      const juce = (window as any).__JUCE__
+      if (juce && juce.backend && juce.backend.addEventListener) {
+        juce.backend.addEventListener('plugin_update', (data: any) => {
+          try {
+            const message = typeof data === 'string' ? JSON.parse(data) : data
+            this.messageHandler?.(message)
+          } catch (e) {
+            console.error('Failed to parse message from plugin:', e)
+          }
+        })
+      }
     }
   }
 
@@ -60,6 +68,16 @@ class PluginService {
   requestParameters(): void {
     this.sendMessage({
       type: 'getParameters'
+    })
+  }
+
+  /**
+   * Sets the plugin window size
+   */
+  setWindowSize(width: number, height: number): void {
+    this.sendMessage({
+      type: 'setWindowSize',
+      data: { width, height }
     })
   }
 }
