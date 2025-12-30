@@ -2,21 +2,30 @@
 
 Vue.js 3 + TypeScript GUI for JUCE plugins with WebView2
 
-## 🎨 Quick Start
+## 🚀 Quick Start
 
+### 1. Create from Template
+Click **"Use this template"** on GitHub to create your own GUI repository.
+
+### 2. Clone & Setup
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_GUI_PROJECT.git
+cd YOUR_GUI_PROJECT
+./setup-gui.ps1
+```
+
+The setup will ask for:
+- **GUI Name** (e.g., "MyPlugin GUI")
+- **Package Name** (e.g., "myplugin-gui")
+- **Description** (optional)
+
+### 3. Install & Run
 ```bash
 npm install
 npm run dev
 ```
 
 Open http://localhost:5173 to preview the GUI in your browser.
-
-## 🧩 Use as Template
-
-1. Click **"Use this template"** on GitHub
-2. Clone your new GUI repository
-3. Customize the interface
-4. Use your GUI repo URL in plugin setup
 
 ## 📁 Structure
 
