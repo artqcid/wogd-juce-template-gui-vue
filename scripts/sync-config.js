@@ -7,7 +7,8 @@ const __dirname = dirname(__filename);
 
 // Read project config
 const configPath = join(__dirname, '..', '..', 'project-config.json');
-const config = JSON.parse(readFileSync(configPath, 'utf-8'));
+const configContent = readFileSync(configPath, 'utf-8').replace(/^\uFEFF/, ''); // Remove BOM if present
+const config = JSON.parse(configContent);
 
 // Read package.json
 const packagePath = join(__dirname, '..', 'package.json');
