@@ -1,24 +1,19 @@
-/* Master CSS - Global Styles */
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
+/* Global Styles */
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333333;
+  font-family: Arial, sans-serif;
+}
+
+/* Prevent color scheme changes based on focus */
+:root {
+  color-scheme: light;
 }
 
 #app {
   width: 100%;
-  height: 100%;
+  height: 100vh;
 }
