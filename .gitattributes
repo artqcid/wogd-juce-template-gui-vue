@@ -1,0 +1,11 @@
+# JSON files should be text without BOM
+*.json text eol=lf working-tree-encoding=UTF-8
+
+# JavaScript and TypeScript files
+*.js text eol=lf
+*.ts text eol=lf
+*.vue text eol=lf
+
+# Configuration files
+*.config.js text eol=lf
+*.config.ts text eol=lf
