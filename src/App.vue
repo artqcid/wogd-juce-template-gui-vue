@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import PluginView from './views/PluginView.vue'
 </script>
 
 <template>
-  <RouterView />
+  <PluginView />
 </template>
